@@ -140,7 +140,12 @@
 // Only re-enable this for nvcc if you're absolutely sure
 // of the circumstances under which it's supported:
 //
-#if defined(__SIZEOF_INT128__) && !defined(__CUDACC__)
+// __int128 is not supported by ROOT5 rootcint command when
+// generating dictionaries. If rootcint is used together with
+// -p, it will use preprocessor from the main compiler causing
+// __int128 macro being defined. This should be removed once
+// ROOT6 is default.
+#if defined(__SIZEOF_INT128__) && !defined(__CUDACC__) && !defined(__MAKECINT__)
 #  define BOOST_HAS_INT128
 #endif
 
