@@ -83,7 +83,7 @@ namespace boost { namespace spirit { namespace char_encoding
         strict_ischar(int ch)
         {
             // ch should be representable as a wchar_t
-            return ch >= WCHAR_MIN && ch <= WCHAR_MAX;
+            return ch >= int(WCHAR_MIN) && ch <= int(WCHAR_MAX);
         }
 
         static bool
