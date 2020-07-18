@@ -11,13 +11,13 @@
  */
 
 #include <cctype>
-#include <exception>
-#include <iomanip>
-#include <iterator> // i/ostreambuf_iterator
 #include <locale>
 #include <limits>
-#include <sstream>
 #include <string>
+#include <sstream>
+#include <iomanip>
+#include <iterator> // i/ostreambuf_iterator
+#include <exception>
 #include <boost/assert.hpp>
 #include <boost/lexical_cast.hpp>
 #include <boost/throw_exception.hpp>
@@ -269,11 +269,11 @@ namespace date_time {
       m_time_duration_format = format;
     }
 
-    void set_iso_format() BOOST_OVERRIDE
+    virtual void set_iso_format()
     {
       this->m_format = iso_time_format_specifier;
     }
-    void set_iso_extended_format() BOOST_OVERRIDE
+    virtual void set_iso_extended_format()
     {
       this->m_format = iso_time_format_extended_specifier;
     }
@@ -409,7 +409,7 @@ namespace date_time {
         // replace %F with nnnnnnn or nothing if fs == 0
         frac_str =
           fractional_seconds_as_string(time_arg.time_of_day(), true);
-        if (!frac_str.empty()) {
+        if (frac_str.size()) {
           char_type sep = std::use_facet<std::numpunct<char_type> >(ios_arg.getloc()).decimal_point();
           string_type replace_string;
           replace_string += sep;
@@ -958,7 +958,7 @@ namespace date_time {
         while((sitr != stream_end) && std::isspace(*sitr)) { ++sitr; }
 
         bool use_current_char = false;
-        bool use_current_format_char = false; // used with two character flags
+        bool use_current_format_char = false; // used whith two character flags
 
         // num_get will consume the +/-, we may need a copy if special_value
         char_type c = '\0';
@@ -1365,6 +1365,9 @@ template <class time_type, class CharT, class InItrT>
   const typename time_input_facet<time_type, CharT, InItrT>::char_type*
   time_input_facet<time_type, CharT, InItrT>::default_time_duration_format = time_formats<CharT>::default_time_duration_format;
 
+
 } } // namespaces
 
+
 #endif
+
