@@ -15,10 +15,8 @@
 #include <locale>
 #include <functional>
 
-#include <boost/iterator/transform_iterator.hpp>
-#include <boost/range/begin.hpp>
-#include <boost/range/end.hpp>
 #include <boost/type_traits/make_unsigned.hpp>
+
 namespace boost {
     namespace algorithm {
         namespace detail {
