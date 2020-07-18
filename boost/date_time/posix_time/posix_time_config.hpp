@@ -66,23 +66,23 @@ namespace posix_time {
     typedef time_res_traits::fractional_seconds_type fractional_seconds_type;
     typedef time_res_traits::tick_type tick_type;
     typedef time_res_traits::impl_type impl_type;
-    BOOST_CXX14_CONSTEXPR time_duration(hour_type hour,
-					min_type min,
-					sec_type sec,
-					fractional_seconds_type fs=0) :
+    time_duration(hour_type hour,
+                  min_type min,
+                  sec_type sec,
+                  fractional_seconds_type fs=0) :
       date_time::time_duration<time_duration, time_res_traits>(hour,min,sec,fs)
     {}
-   BOOST_CXX14_CONSTEXPR time_duration() :
+    time_duration() :
       date_time::time_duration<time_duration, time_res_traits>(0,0,0)
     {}
     //! Construct from special_values
-    BOOST_CXX14_CONSTEXPR time_duration(boost::date_time::special_values sv) :
+    time_duration(boost::date_time::special_values sv) :
       date_time::time_duration<time_duration, time_res_traits>(sv)
     {}
     //Give duration access to ticks constructor -- hide from users
     friend class date_time::time_duration<time_duration, time_res_traits>;
   protected:
-    BOOST_CXX14_CONSTEXPR explicit time_duration(impl_type tick_count) :
+    explicit time_duration(impl_type tick_count) :
       date_time::time_duration<time_duration, time_res_traits>(tick_count)
     {}
   };
@@ -94,7 +94,7 @@ namespace posix_time {
   {
     typedef gregorian::date      date_type;
     typedef time_duration        time_duration_type;
-    BOOST_CXX14_CONSTEXPR simple_time_rep(date_type d, time_duration_type tod) :
+    simple_time_rep(date_type d, time_duration_type tod) :
       day(d),
       time_of_day(tod)
     {
@@ -116,19 +116,19 @@ namespace posix_time {
     }
     date_type day;
     time_duration_type time_of_day;
-    BOOST_CXX14_CONSTEXPR bool is_special()const
+    bool is_special()const
     {
       return(is_pos_infinity() || is_neg_infinity() || is_not_a_date_time());
     }
-    BOOST_CXX14_CONSTEXPR bool is_pos_infinity()const
+    bool is_pos_infinity()const
     {
       return(day.is_pos_infinity() || time_of_day.is_pos_infinity());
     }
-    BOOST_CXX14_CONSTEXPR bool is_neg_infinity()const
+    bool is_neg_infinity()const
     {
       return(day.is_neg_infinity() || time_of_day.is_neg_infinity());
     }
-    BOOST_CXX14_CONSTEXPR bool is_not_a_date_time()const
+    bool is_not_a_date_time()const
     {
       return(day.is_not_a_date() || time_of_day.is_not_a_date_time());
     }

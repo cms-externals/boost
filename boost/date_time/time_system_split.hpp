@@ -48,9 +48,7 @@ namespace date_time {
 #endif
 #endif
 
-    static
-    BOOST_CXX14_CONSTEXPR
-    time_rep_type get_time_rep(special_values sv)
+    static time_rep_type get_time_rep(special_values sv)
     {
       switch (sv) {
       case not_a_date_time:
@@ -77,11 +75,9 @@ namespace date_time {
 
     }
 
-    static
-    BOOST_CXX14_CONSTEXPR
-    time_rep_type get_time_rep(const date_type& day,
-			       const time_duration_type& tod,
-			       date_time::dst_flags /* dst */ = not_dst)
+    static time_rep_type get_time_rep(const date_type& day,
+                                      const time_duration_type& tod,
+                                      date_time::dst_flags /* dst */ = not_dst)
     {
       if(day.is_special() || tod.is_special()) {
         if(day.is_not_a_date() || tod.is_not_a_date_time()) {
@@ -127,11 +123,11 @@ namespace date_time {
       }
       return time_rep_type(day, tod);
     }
-    static BOOST_CONSTEXPR date_type get_date(const time_rep_type& val)
+    static date_type get_date(const time_rep_type& val)
     {
       return date_type(val.day);
     }
-    static BOOST_CONSTEXPR time_duration_type get_time_of_day(const time_rep_type& val)
+    static time_duration_type get_time_of_day(const time_rep_type& val)
     {
       return time_duration_type(val.time_of_day);
     }
@@ -139,33 +135,28 @@ namespace date_time {
     {
       return std::string();
     }
-    static BOOST_CONSTEXPR
-    bool is_equal(const time_rep_type& lhs, const time_rep_type& rhs)
+    static bool is_equal(const time_rep_type& lhs, const time_rep_type& rhs)
     {
       return ((lhs.day == rhs.day) && (lhs.time_of_day == rhs.time_of_day));
     }
-    static BOOST_CXX14_CONSTEXPR
-    bool is_less(const time_rep_type& lhs, const time_rep_type& rhs)
+    static bool is_less(const time_rep_type& lhs, const time_rep_type& rhs)
     {
       if (lhs.day < rhs.day) return true;
       if (lhs.day > rhs.day) return false;
       return (lhs.time_of_day < rhs.time_of_day);
     }
-    static BOOST_CXX14_CONSTEXPR
-    time_rep_type add_days(const time_rep_type& base,
-			   const date_duration_type& dd)
+    static time_rep_type add_days(const time_rep_type& base,
+                                  const date_duration_type& dd)
     {
       return time_rep_type(base.day+dd, base.time_of_day);
     }
-    static BOOST_CXX14_CONSTEXPR
-    time_rep_type subtract_days(const time_rep_type& base,
-				const date_duration_type& dd)
+    static time_rep_type subtract_days(const time_rep_type& base,
+                                       const date_duration_type& dd)
     {
       return split_timedate_system::get_time_rep(base.day-dd, base.time_of_day);
     }
-    static BOOST_CXX14_CONSTEXPR
-    time_rep_type subtract_time_duration(const time_rep_type& base,
-					 const time_duration_type& td)
+    static time_rep_type subtract_time_duration(const time_rep_type& base,
+                                                const time_duration_type& td)
     {
       if(base.day.is_special() || td.is_special())
       {
@@ -182,9 +173,8 @@ namespace date_time {
       return time_rep_type(base.day-day_overflow,
                            time_duration_type(0,0,0,day_offset.as_int()));
     }
-    static BOOST_CXX14_CONSTEXPR
-    time_rep_type add_time_duration(const time_rep_type& base,
-				    time_duration_type td)
+    static time_rep_type add_time_duration(const time_rep_type& base,
+                                           time_duration_type td)
     {
       if(base.day.is_special() || td.is_special()) {
         return split_timedate_system::get_time_rep(base.day, td);
@@ -200,9 +190,8 @@ namespace date_time {
       return time_rep_type(base.day+day_overflow,
                            time_duration_type(0,0,0,day_offset.as_int()));
     }
-    static BOOST_CXX14_CONSTEXPR
-    time_duration_type subtract_times(const time_rep_type& lhs,
-				      const time_rep_type& rhs)
+    static time_duration_type subtract_times(const time_rep_type& lhs,
+                                             const time_rep_type& rhs)
     {
       date_duration_type dd = lhs.day - rhs.day;
       if (BOOST_LIKELY(!dd.is_special())) {
