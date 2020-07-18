@@ -10,10 +10,7 @@
  * $Date$
  */
 
-#include <iosfwd>
-#include <string>
-#include <vector>
-#include <iterator>
+
 
 namespace boost { namespace date_time {
 
