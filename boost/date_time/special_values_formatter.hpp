@@ -12,7 +12,6 @@
 
 #include <vector>
 #include <string>
-#include <iterator>
 #include "boost/date_time/special_defs.hpp"
 
 namespace boost { namespace date_time {

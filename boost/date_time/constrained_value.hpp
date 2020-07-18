@@ -53,11 +53,11 @@ namespace CV {
       return *this;
     }
     //! Return the max allowed value (traits method)
-    static BOOST_CONSTEXPR value_type
+    static BOOST_CONSTEXPR_OR_CONST value_type
     max BOOST_PREVENT_MACRO_SUBSTITUTION () {return (value_policies::max)();}
 
     //! Return the min allowed value (traits method)
-    static BOOST_CONSTEXPR value_type
+    static BOOST_CONSTEXPR_OR_CONST value_type
     min BOOST_PREVENT_MACRO_SUBSTITUTION () {return (value_policies::min)();}
 
     //! Coerce into the representation type
@@ -65,7 +65,7 @@ namespace CV {
   protected:
     value_type value_;
   private:
-    BOOST_CXX14_CONSTEXPR void assign(value_type value)
+    void assign(value_type value)
     {
       //adding 1 below gets rid of a compiler warning which occurs when the 
       //min_value is 0 and the type is unsigned....
@@ -107,10 +107,10 @@ namespace CV {
 
   public:
     typedef rep_type value_type;
-    static BOOST_CONSTEXPR rep_type
+    static BOOST_CONSTEXPR_OR_CONST rep_type
     min BOOST_PREVENT_MACRO_SUBSTITUTION () { return min_value; }
 
-    static BOOST_CONSTEXPR rep_type
+    static BOOST_CONSTEXPR_OR_CONST rep_type
     max BOOST_PREVENT_MACRO_SUBSTITUTION () { return max_value; }
 
     static void on_error(rep_type, rep_type, violation_enum)
