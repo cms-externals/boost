@@ -13,7 +13,6 @@
 #include <string>
 #include <vector>
 #include <locale>
-#include <cstring>
 
 namespace boost { namespace date_time {
 
