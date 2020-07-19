@@ -3,14 +3,17 @@
 #define DATETIME_PERIOD_FORMATTER_HPP___
 
 /* Copyright (c) 2002-2004 CrystalClear Software, Inc.
- * Use, modification and distribution is subject to the 
+ * Use, modification and distribution is subject to the
  * Boost Software License, Version 1.0. (See accompanying
  * file LICENSE_1_0.txt or http://www.boost.org/LICENSE_1_0.txt)
  * Author: Jeff Garland, Bart Garst
  * $Date$
  */
 
-
+#include <iosfwd>
+#include <string>
+#include <vector>
+#include <iterator>
 
 namespace boost { namespace date_time {
 
