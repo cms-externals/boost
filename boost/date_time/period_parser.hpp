@@ -3,7 +3,7 @@
 #define DATETIME_PERIOD_PARSER_HPP___
 
 /* Copyright (c) 2002-2004 CrystalClear Software, Inc.
- * Use, modification and distribution is subject to the
+ * Use, modification and distribution is subject to the 
  * Boost Software License, Version 1.0. (See accompanying
  * file LICENSE_1_0.txt or http://www.boost.org/LICENSE_1_0.txt)
  * Author: Jeff Garland, Bart Garst
@@ -18,7 +18,6 @@
 #include <boost/date_time/special_defs.hpp>
 #include <boost/date_time/string_parse_tree.hpp>
 #include <boost/date_time/string_convert.hpp>
-
 
 namespace boost { namespace date_time {
 

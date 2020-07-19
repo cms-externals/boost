@@ -9,12 +9,12 @@
  * $Date$
  */
 
-#include <boost/date_time/gregorian/gregorian_types.hpp>
-#include <boost/date_time/date_parsing.hpp>
-#include <boost/date_time/compiler_config.hpp>
-#include <boost/date_time/parse_format_base.hpp>
-#include <boost/date_time/special_defs.hpp>
+#include "boost/date_time/gregorian/gregorian_types.hpp"
+#include "boost/date_time/date_parsing.hpp"
+#include "boost/date_time/compiler_config.hpp"
+#include "boost/date_time/parse_format_base.hpp"
 #include <string>
+#include <sstream>
 #include <iterator>
 
 namespace boost {
