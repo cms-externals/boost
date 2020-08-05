@@ -9,13 +9,11 @@
  * $Date$
  */
 
-#include <cstring>
 #include <sstream>
 #include <string>
 #include <vector>
 #include <locale>
 #include <cstring>
-#include <iterator>
 
 namespace boost { namespace date_time {
 

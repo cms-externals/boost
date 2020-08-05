@@ -15,7 +15,6 @@
 #include "boost/date_time/parse_format_base.hpp"
 #include <string>
 #include <sstream>
-#include <iterator>
 
 namespace boost {
 namespace gregorian {

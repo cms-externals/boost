@@ -9,7 +9,6 @@
 #define BOOST_MATH_CALCULATE_CONSTANTS_CONSTANTS_INCLUDED
 
 #include <boost/math/special_functions/trunc.hpp>
-#include <boost/math/constants/constants.hpp>
 
 namespace boost{ namespace math{ namespace constants{ namespace detail{
 
