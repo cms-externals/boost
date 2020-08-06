@@ -12,6 +12,7 @@
 #include <boost/math/tools/atomic.hpp>
 #include <boost/utility/enable_if.hpp>
 #include <boost/math/tools/toms748_solve.hpp>
+#include <atomic>
 #include <vector>
 
 namespace boost{ namespace math{ namespace detail{

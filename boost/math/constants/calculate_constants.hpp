@@ -1,4 +1,4 @@
-1;95;0c//  Copyright John Maddock 2010, 2012.
+//  Copyright John Maddock 2010, 2012.
 //  Copyright Paul A. Bristow 2011, 2012.
 
 //  Use, modification and distribution are subject to the
@@ -8,8 +8,8 @@
 #ifndef BOOST_MATH_CALCULATE_CONSTANTS_CONSTANTS_INCLUDED
 #define BOOST_MATH_CALCULATE_CONSTANTS_CONSTANTS_INCLUDED
 
-#include <boost/math/special_functions/trunc.hpp>
 #include <boost/math/constants/constants.hpp>
+#include <boost/math/special_functions/trunc.hpp>
 
 namespace boost{ namespace math{ namespace constants{ namespace detail{
 

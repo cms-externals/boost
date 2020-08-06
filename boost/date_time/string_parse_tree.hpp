@@ -9,12 +9,13 @@
  * $Date$
  */
 
-
-#include "boost/lexical_cast.hpp" //error without?
 #include "boost/algorithm/string/case_conv.hpp"
+#include <cctype>
 #include <map>
 #include <string>
 #include <vector>
+#include <ostream>
+#include <iterator>
 #include <algorithm>
 
 namespace boost { namespace date_time {

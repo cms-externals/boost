@@ -7,6 +7,7 @@
 #define BOOST_MATH_STATISTICS_UNIVARIATE_STATISTICS_HPP
 
 #include <algorithm>
+#include <cmath>
 #include <iterator>
 #include <boost/assert.hpp>
 

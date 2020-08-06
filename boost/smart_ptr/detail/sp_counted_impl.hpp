@@ -38,6 +38,7 @@
 #endif
 
 #include <cstddef>          // std::size_t
+#include <memory>
 
 namespace boost
 {

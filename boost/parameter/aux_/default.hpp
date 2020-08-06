@@ -7,6 +7,8 @@
 #ifndef DEFAULT_050329_HPP
 #define DEFAULT_050329_HPP
 
+#include <boost/parameter/config.hpp>
+
 namespace boost { namespace parameter { namespace aux {
 
     // A wrapper for the default value passed by the user when resolving
@@ -21,8 +23,6 @@ namespace boost { namespace parameter { namespace aux {
         Value& value;
     };
 }}} // namespace boost::parameter::aux
-
-#include <boost/parameter/config.hpp>
 
 namespace boost { namespace parameter { namespace aux {
 
