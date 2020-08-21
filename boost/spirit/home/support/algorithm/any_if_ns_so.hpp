@@ -12,8 +12,8 @@
 #pragma once
 #endif
 
+#include <boost/spirit/home/support/algorithm/any_if.hpp>
 #include <boost/spirit/home/support/algorithm/any_ns_so.hpp>
-
 namespace boost { namespace spirit
 {
     ///////////////////////////////////////////////////////////////////////////
