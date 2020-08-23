@@ -8,6 +8,8 @@
 #ifndef BOOST_IOSTREAMS_DETAIL_NEWLINE_HPP_INCLUDED
 #define BOOST_IOSTREAMS_DETAIL_NEWLINE_HPP_INCLUDED
 
+#include <boost/config.hpp>
+
 #if defined(_MSC_VER)
 # pragma once
 #endif
