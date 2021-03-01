@@ -13,6 +13,11 @@
 #ifndef BOOST_UUID_DETAIL_UUID_X86_IPP_INCLUDED_
 #define BOOST_UUID_DETAIL_UUID_X86_IPP_INCLUDED_
 
+#include <memory>
+#include <boost/config.hpp>
+#include <boost/cstdint.hpp>
+#include <boost/uuid/uuid.hpp>
+
 // MSVC does not always have immintrin.h (at least, not up to MSVC 10), so include the appropriate header for each instruction set
 #if defined(BOOST_UUID_USE_SSE41)
 #include <smmintrin.h>

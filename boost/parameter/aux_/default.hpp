@@ -7,6 +7,8 @@
 #ifndef BOOST_PARAMETER_AUX_DEFAULT_HPP
 #define BOOST_PARAMETER_AUX_DEFAULT_HPP
 
+#include <boost/parameter/config.hpp>
+
 namespace boost { namespace parameter { namespace aux {
 
     // A wrapper for the default value passed by the user when resolving
@@ -22,7 +24,6 @@ namespace boost { namespace parameter { namespace aux {
     };
 }}} // namespace boost::parameter::aux
 
-#include <boost/parameter/config.hpp>
 
 namespace boost { namespace parameter { namespace aux {
 

@@ -36,6 +36,7 @@
 #if defined(__SGI_STL_PORT)
 #  include <boost/math/tools/real_cast.hpp>
 #endif
+#include <cmath>
 #include <ostream>
 #include <istream>
 #include <boost/config/no_tr1/cmath.hpp>

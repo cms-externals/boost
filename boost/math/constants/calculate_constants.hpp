@@ -8,6 +8,7 @@
 #ifndef BOOST_MATH_CALCULATE_CONSTANTS_CONSTANTS_INCLUDED
 #define BOOST_MATH_CALCULATE_CONSTANTS_CONSTANTS_INCLUDED
 #include <boost/static_assert.hpp>
+#include <boost/math/constants/constants.hpp>
 
 namespace boost{ namespace math{ namespace constants{ namespace detail{
 

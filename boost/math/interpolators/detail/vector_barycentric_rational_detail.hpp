@@ -8,6 +8,8 @@
 #ifndef BOOST_MATH_INTERPOLATORS_VECTOR_BARYCENTRIC_RATIONAL_DETAIL_HPP
 #define BOOST_MATH_INTERPOLATORS_VECTOR_BARYCENTRIC_RATIONAL_DETAIL_HPP
 
+#include <cmath>
+#include <limits>
 #include <vector>
 #include <utility> // for std::move
 #include <limits>
