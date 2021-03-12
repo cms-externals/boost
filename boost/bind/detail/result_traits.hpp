@@ -25,6 +25,8 @@
 #include <functional>
 #endif
 
+#include <boost/core/ref.hpp>
+
 namespace boost
 {
 
