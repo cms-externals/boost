@@ -23,6 +23,7 @@
 #include <boost/spirit/home/karma/stream/detail/format_manip.hpp>
 #include <boost/spirit/home/karma/detail/get_casetag.hpp>
 #include <boost/spirit/home/karma/detail/extract_from.hpp>
+#include <boost/spirit/home/karma/detail/generate_to.hpp>
 #include <boost/fusion/include/at.hpp>
 #include <boost/fusion/include/vector.hpp>
 #include <boost/fusion/include/cons.hpp>

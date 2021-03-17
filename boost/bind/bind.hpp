@@ -32,7 +32,7 @@
 #include <boost/visit_each.hpp>
 #include <boost/core/enable_if.hpp>
 #include <boost/core/is_same.hpp>
-#include <boost/core/ref.hpp> 
+#include <boost/core/ref.hpp>
 #if !defined( BOOST_NO_CXX11_RVALUE_REFERENCES )
 #include <utility> // std::forward
 #endif

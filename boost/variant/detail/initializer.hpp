@@ -16,7 +16,7 @@
 #include <new> // for placement new
 
 #include <boost/config.hpp>
-
+#include <boost/assert.hpp>
 #include <boost/call_traits.hpp>
 #include <boost/detail/reference_content.hpp>
 #include <boost/variant/recursive_wrapper_fwd.hpp>

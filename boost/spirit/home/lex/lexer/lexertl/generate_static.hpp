@@ -20,6 +20,7 @@
 #include <boost/spirit/home/lex/lexer/lexertl/static_version.hpp>
 #include <boost/scoped_array.hpp>
 #include <locale>
+#include <string.h>
 
 ///////////////////////////////////////////////////////////////////////////////
 namespace boost { namespace spirit { namespace lex { namespace lexertl
