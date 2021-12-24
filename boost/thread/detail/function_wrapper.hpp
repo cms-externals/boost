@@ -15,6 +15,7 @@
 #include <boost/thread/detail/move.hpp>
 
 #include <boost/thread/csbl/memory/unique_ptr.hpp>
+#include <boost/move/unique_ptr.hpp>
 
 #include <memory>
 #include <functional>

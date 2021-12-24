@@ -16,6 +16,8 @@
 #include <boost/math/special_functions/sign.hpp>
 #include <boost/math/special_functions/trunc.hpp>
 #include <boost/math/tools/traits.hpp>
+#include <boost/math/tools/config.hpp>
+#include <cmath>
 #include <type_traits>
 #include <cfloat>
 

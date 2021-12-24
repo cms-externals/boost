@@ -5,6 +5,8 @@
 
 // See http://www.boost.org/libs/iostreams for documentation.
 
+#include <boost/config/workaround.hpp>
+
 #if defined(BOOST_MSVC)
 # pragma warning(pop)
 #else

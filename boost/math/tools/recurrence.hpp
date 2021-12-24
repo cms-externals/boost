@@ -14,6 +14,8 @@
 #include <boost/math/tools/tuple.hpp>
 #include <boost/math/tools/fraction.hpp>
 #include <boost/math/tools/cxx03_warn.hpp>
+#include <boost/type_traits/remove_reference.hpp>
+#include <boost/math/special_functions/fpclassify.hpp>
 #include <boost/math/tools/assert.hpp>
 
 namespace boost {

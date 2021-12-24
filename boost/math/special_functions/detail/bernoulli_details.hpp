@@ -13,6 +13,7 @@
 #include <boost/math/tools/throw_exception.hpp>
 #include <boost/math/tools/config.hpp>
 #include <boost/math/special_functions/fpclassify.hpp>
+#include <atomic>
 #include <vector>
 #include <type_traits>
 

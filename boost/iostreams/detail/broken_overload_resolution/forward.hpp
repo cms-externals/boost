@@ -9,6 +9,7 @@
 #define BOOST_IOSTREAMS_DETAIL_BROKEN_OVERLOAD_RESOLUTION_HPP_INCLUDED
 
 #include <boost/config.hpp>                     // BOOST_STATIC_CONSANT.
+#include <boost/core/ref.hpp>
 #include <boost/mpl/bool.hpp>
 #include <boost/type_traits/is_same.hpp>
 
