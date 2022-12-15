@@ -1128,7 +1128,7 @@ class segment_manager
             return it->get_block_header()->value();
          }
          if(dothrow){
-            throw interprocess_exception(already_exists_error);
+           throw interprocess_exception(already_exists_error,"priv_generic_named_construct: dowthrow == true");
          }
          else{
             return 0;

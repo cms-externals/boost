@@ -234,7 +234,7 @@ inline bool shared_memory_object::priv_open_or_create
    //Set accesses
    if (mode != read_write && mode != read_only){
       error_info err = other_error;
-      throw interprocess_exception(err);
+      throw interprocess_exception(err, "shared_memory_object::priv_open_or_create shared dir failure");
    }
 
    switch(type){
@@ -250,7 +250,7 @@ inline bool shared_memory_object::priv_open_or_create
       default:
          {
             error_info err = other_error;
-            throw interprocess_exception(err);
+            throw interprocess_exception(err, "shared_memory_object::priv_open_or_create unknown type");
          }
    }
 
@@ -258,7 +258,7 @@ inline bool shared_memory_object::priv_open_or_create
    if(m_handle == ipcdetail::invalid_file()){
       error_info err = system_error_code();
       this->priv_close();
-      throw interprocess_exception(err);
+      throw interprocess_exception(err, "shared_memory_object::priv_open_or_create invalid_file");
    }
 
    m_mode = mode;
@@ -299,7 +299,7 @@ inline void shared_memory_object::truncate(offset_t length)
 {
    if(!ipcdetail::truncate_file(m_handle, (std::size_t)length)){
       error_info err = system_error_code();
-      throw interprocess_exception(err);
+      throw interprocess_exception(err, "shared_memory_object::truncate");
    }
 }
 
@@ -366,7 +366,7 @@ inline bool shared_memory_object::priv_open_or_create
    }
    else{
       error_info err(mode_error);
-      throw interprocess_exception(err);
+      throw interprocess_exception(err, "shared_memory_object::priv_open_or_create unknown mode");
    }
    ::mode_t unix_perm = perm.get_permissions();
 
@@ -414,7 +414,7 @@ inline bool shared_memory_object::priv_open_or_create
       default:
       {
          error_info err = other_error;
-         throw interprocess_exception(err);
+         throw interprocess_exception(err, "shared_memory_object::priv_open_or_create type unknown");
       }
    }
 
@@ -422,7 +422,7 @@ inline bool shared_memory_object::priv_open_or_create
    if(m_handle < 0){
       error_info err = errno;
       this->priv_close();
-      throw interprocess_exception(err);
+      throw interprocess_exception(err, "shared_memory_object::priv_open_or_create shm_open failed");
    }
 
    m_filename = filename;
@@ -464,7 +464,7 @@ inline void shared_memory_object::truncate(offset_t length)
 
    if (ret && ret != EOPNOTSUPP && ret != ENODEV){
       error_info err(ret);
-      throw interprocess_exception(err);
+      throw interprocess_exception(err, "shared_memory_object::truncate posix failure");
    }
    //ftruncate fallback
    #endif //BOOST_INTERPROCESS_POSIX_FALLOCATE
@@ -474,7 +474,7 @@ inline void shared_memory_object::truncate(offset_t length)
       if (errno == EINTR)
          goto handle_eintr;
       error_info err(system_error_code());
-      throw interprocess_exception(err);
+      throw interprocess_exception(err, "shared_memory_object::truncate failure");
    }
 }
 

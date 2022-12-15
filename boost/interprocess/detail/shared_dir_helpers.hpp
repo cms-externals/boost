@@ -68,7 +68,7 @@ struct shared_dir_constants<wchar_t>
             //Throw if bootstamp not available
             if(!winapi::get_last_bootup_time(stamp)){
                error_info err = system_error_code();
-               throw interprocess_exception(err);
+               throw interprocess_exception(err, "windows_bootstamp: winapi::get_last_bootup_time failed");
             }
          }
          //Use std::string. Even if this will be constructed in shared memory, all
@@ -139,7 +139,7 @@ inline void get_shared_dir_root(std::basic_string<CharT> &dir_path)
    //We always need this path, so throw on error
    if(dir_path.empty()){
       error_info err = system_error_code();
-      throw interprocess_exception(err);
+      throw interprocess_exception(err, "get_shared_dir_root: empty dir_path");
    }
 
    dir_path += shared_dir_constants<CharT>::dir_interprocess();
@@ -211,7 +211,7 @@ inline void create_shared_dir_and_clean_old(std::basic_string<CharT> &shared_dir
       //If fails, check that it's because already exists
       if(!open_or_create_shared_directory(root_shared_dir.c_str())){
          error_info info(system_error_code());
-         throw interprocess_exception(info);
+         throw interprocess_exception(info, "create_shared_dir_and_clean_old: open_or_create_shared_directory failed");
       }
 
       #if defined(BOOST_INTERPROCESS_HAS_KERNEL_BOOTTIME)
@@ -220,7 +220,7 @@ inline void create_shared_dir_and_clean_old(std::basic_string<CharT> &shared_dir
          //If fails, check that it's because already exists
          if(!open_or_create_shared_directory(shared_dir.c_str())){
             error_info info(system_error_code());
-            throw interprocess_exception(info);
+            throw interprocess_exception(info, "open_or_create_shared_directory: open_or_create_shared_directory");
          }
          //Now erase all old directories created in the previous boot sessions
          std::basic_string<CharT> subdir = shared_dir;

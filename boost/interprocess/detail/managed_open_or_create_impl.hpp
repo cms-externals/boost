@@ -310,7 +310,7 @@ class managed_open_or_create_impl
                //File existing when trying to create, but non-existing when
                //trying to open, and tried MaxCreateOrOpenTries times. Something fishy
                //is happening here and we can't solve it
-               throw interprocess_exception(error_info(corrupted_error));
+              throw interprocess_exception(error_info(corrupted_error), "do_create_else_open: file exists when trying to create, but not when trying to open");
             }
             else{
                BOOST_TRY{
@@ -367,7 +367,7 @@ class managed_open_or_create_impl
          }
          else{
             atomic_write32(patomic_word, CorruptedSegment);
-            throw interprocess_exception(error_info(corrupted_error));
+            throw interprocess_exception(error_info(corrupted_error), "do_map_after_create: corrupted segment");
          }
       }
       BOOST_CATCH(...){
@@ -401,7 +401,7 @@ class managed_open_or_create_impl
          while(1){
             if(!get_file_size(file_handle_from_mapping_handle(dev.get_mapping_handle()), filesize)){
                error_info err = system_error_code();
-               throw interprocess_exception(err);
+               throw interprocess_exception(err, "do_map_after_open: get_file_size failed");
             }
             if (filesize != 0)
                break;
@@ -410,14 +410,14 @@ class managed_open_or_create_impl
                //to minimally increase the size of the file: something bad has happened
                const usduration elapsed(microsec_clock<ustime>::universal_time() - ustime_start);
                if (elapsed > TimeoutSec){
-                  throw interprocess_exception(error_info(corrupted_error));
+                 throw interprocess_exception(error_info(corrupted_error), "do_map_after_open: too much elapsed time in get_file_size");
                }
                swait.yield();
             }
          }
          //The creator detected an error creating the file and signalled it with size 1
          if(filesize == 1){
-            throw interprocess_exception(error_info(corrupted_error));
+           throw interprocess_exception(error_info(corrupted_error), "do_map_after_open: creating of file failed");
          }
       }
 
@@ -431,13 +431,13 @@ class managed_open_or_create_impl
          spin_wait swait;
          while ((value = atomic_read32(patomic_word)) != InitializedSegment){
             if(value == CorruptedSegment){
-               throw interprocess_exception(error_info(corrupted_error));
+              throw interprocess_exception(error_info(corrupted_error), "do_map_after_open: corrupted segment");
             }
             //More than MaxZeroTruncateTimeSec seconds waiting to the creator
             //to minimally increase the size of the file: something bad has happened
             const usduration elapsed(microsec_clock<ustime>::universal_time() - ustime_start);
             if (elapsed > TimeoutSec){
-               throw interprocess_exception(error_info(corrupted_error));
+              throw interprocess_exception(error_info(corrupted_error), "do_map_after_open: too much time elapsed in reading patomic_word");
             }
             swait.yield();
          }
@@ -470,11 +470,11 @@ class managed_open_or_create_impl
          const std::size_t func_min_size = construct_func.get_min_size();
          if( (std::size_t(-1) - ManagedOpenOrCreateUserOffset) < func_min_size ||
              size < (func_min_size + ManagedOpenOrCreateUserOffset) ){
-            throw interprocess_exception(error_info(size_error));
+           throw interprocess_exception(error_info(size_error), "priv_open_or_create: insufficient size");
          }
          //Check size can be represented by offset_t (used by truncate)
          if (!check_offset_t_size<FileBased>(size, file_like_t())){
-           throw interprocess_exception(error_info(size_error));
+           throw interprocess_exception(error_info(size_error),"priv_open_or_create: size does not fit as offset_t");
          }
       }
 
