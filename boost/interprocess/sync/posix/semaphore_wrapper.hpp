@@ -100,13 +100,13 @@ inline bool semaphore_open
       default:
       {
          error_info err(other_error);
-         throw interprocess_exception(err);
+         throw interprocess_exception(err, "semaphore_open: unknown type");
       }
    }
 
    //Check for error
    if(handle == BOOST_INTERPROCESS_POSIX_SEM_FAILED){
-      throw interprocess_exception(error_info(errno));
+     throw interprocess_exception(error_info(errno),"semaphore_open: sem_open failed");
    }
 
    return true;
@@ -148,7 +148,7 @@ inline void semaphore_init(sem_t *handle, unsigned int initialCount)
    //In the future, a successful call might be required to return 0.
    if(ret == -1){
       error_info err = system_error_code();
-      throw interprocess_exception(err);
+      throw interprocess_exception(err, "semaphore_init: sem_init failed");
    }
 }
 
@@ -167,7 +167,7 @@ inline void semaphore_post(sem_t *handle)
    int ret = sem_post(handle);
    if(ret != 0){
       error_info err = system_error_code();
-      throw interprocess_exception(err);
+      throw interprocess_exception(err, "semaphore_post: sem_post failed");
    }
 }
 
@@ -176,7 +176,7 @@ inline void semaphore_wait(sem_t *handle)
    int ret = sem_wait(handle);
    if(ret != 0){
       error_info err = system_error_code();
-      throw interprocess_exception(err);
+      throw interprocess_exception(err, "semaphore_wait: sem_wait failed");
    }
 }
 
@@ -189,7 +189,7 @@ inline bool semaphore_try_wait(sem_t *handle)
       return false;
    }
    error_info err = system_error_code();
-   throw interprocess_exception(err);
+   throw interprocess_exception(err, "semaphore_try_wait: sem_trywait failed");
 }
 
 #ifndef BOOST_INTERPROCESS_POSIX_TIMEOUTS
@@ -235,7 +235,7 @@ inline bool semaphore_timed_wait(sem_t *handle, const TimePoint &abs_time)
          return false;
       }
       error_info err = system_error_code();
-      throw interprocess_exception(err);
+      throw interprocess_exception(err, "semaphore_timed_wait: sem_timedwait failed");
    }
    return false;
    #else //#ifdef BOOST_INTERPROCESS_POSIX_TIMEOUTS

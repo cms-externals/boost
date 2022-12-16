@@ -43,7 +43,7 @@ class BOOST_SYMBOL_VISIBLE interprocess_exception : public std::exception
       BOOST_CATCH(...) {} BOOST_CATCH_END
    }
 
-   interprocess_exception(const error_info &err_info, const char *str = 0)
+  interprocess_exception(const error_info &err_info, const char *str /*= 0*/)
       :  m_err(err_info)
    {
       BOOST_TRY{
@@ -83,7 +83,7 @@ class BOOST_SYMBOL_VISIBLE lock_exception : public interprocess_exception
 {
    public:
    lock_exception(error_code_t err = lock_error) BOOST_NOEXCEPT
-      :  interprocess_exception(err)
+     :  interprocess_exception(err, "lock_exception")
    {}
 
    const char* what() const BOOST_NOEXCEPT_OR_NOTHROW BOOST_OVERRIDE
