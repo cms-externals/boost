@@ -46,6 +46,7 @@
 #include <cstddef>   //std::size_t
 #include <boost/intrusive/detail/minimal_pair_header.hpp>
 #include <boost/assert.hpp>
+#include <vector>
 #ifndef BOOST_NO_EXCEPTIONS
 #include <exception>
 #endif
@@ -1128,7 +1129,19 @@ class segment_manager
             return it->get_block_header()->value();
          }
          if(dothrow){
-           throw interprocess_exception(already_exists_error,"priv_generic_named_construct: dowthrow == true");
+           auto c = [](auto  name) {
+                      std::vector<char> ret;
+                      constexpr const char preamble[] = "priv_generic_named_construct: already exists name:'";
+                      ret.reserve(sizeof(preamble)+strlen(name)+2);
+                      std::copy(preamble,preamble+sizeof(preamble)-1,back_inserter(ret));
+                      std::copy(name,name+strlen(name), back_inserter(ret));
+                      ret.emplace_back('\'');
+                      ret.emplace_back(0);
+                      return ret;
+                    };
+           
+           static const auto desc = c(name);
+           throw interprocess_exception(already_exists_error,desc.data());
          }
          else{
             return 0;
