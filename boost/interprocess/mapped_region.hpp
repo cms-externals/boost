@@ -350,7 +350,7 @@ inline void mapped_region::priv_size_from_mapping_size
       boost::uintmax_t(mapping_size - (offset - page_offset)) >
          boost::uintmax_t(std::size_t(-1))){
       error_info err(size_error);
-      throw interprocess_exception(err);
+      throw interprocess_exception(err, "mapped_region::priv_size_from_mapping_size failed");
    }
    size = static_cast<std::size_t>(mapping_size - offset);
 }
@@ -426,7 +426,7 @@ inline mapped_region::mapped_region
          default:
             {
                error_info err(mode_error);
-               throw interprocess_exception(err);
+               throw interprocess_exception(err, "mapped_region::ctr unknown mode");
             }
          break;
       }
@@ -446,7 +446,7 @@ inline mapped_region::mapped_region
          //Check if all is correct
          if(!native_mapping_handle){
             error_info err ((int)winapi::get_last_error());
-            throw interprocess_exception(err);
+            throw interprocess_exception(err, "mapped_region::ctr winapi::create_file_mapping failed");
          }
          handle_to_close = native_mapping_handle;
       }
@@ -466,7 +466,7 @@ inline mapped_region::mapped_region
          offset_t mapping_size;
          if(!winapi::get_file_mapping_size(native_mapping_handle, mapping_size)){
             error_info err((int)winapi::get_last_error());
-            throw interprocess_exception(err);
+            throw interprocess_exception(err, "mapped_region::ctr: get_file_mapping_size failed");
          }
          //This can throw
          priv_size_from_mapping_size(mapping_size, offset, page_offset, size);
@@ -482,7 +482,7 @@ inline mapped_region::mapped_region
       //Check error
       if(!base){
          error_info err((int)winapi::get_last_error());
-         throw interprocess_exception(err);
+         throw interprocess_exception(err, "mapped_region::ctr: winapi::map_view_of_file_ex failed");
       }
 
       //Calculate new base for the user
@@ -497,7 +497,7 @@ inline mapped_region::mapped_region
    if(!winapi::duplicate_current_process_handle(mhandle.handle, &m_file_or_mapping_hnd)){
       error_info err((int)winapi::get_last_error());
       this->priv_close();
-      throw interprocess_exception(err);
+      throw interprocess_exception(err, "mapped_region::ctr: winapi::duplicate_current_process_handle failed");
    }
 }
 
@@ -600,7 +600,7 @@ inline mapped_region::mapped_region
       int ret = ::shmctl(map_hnd.handle, IPC_STAT, &xsi_ds);
       if(ret == -1){
          error_info err(system_error_code());
-         throw interprocess_exception(err);
+         throw interprocess_exception(err, "mapped_region::ctr: shmctl failed");
       }
       //Compare sizess
       if(size == 0){
@@ -608,7 +608,7 @@ inline mapped_region::mapped_region
       }
       else if(size != (std::size_t)xsi_ds.shm_segsz){
          error_info err(size_error);
-         throw interprocess_exception(err);
+         throw interprocess_exception(err, "mapped_region::ctr: size not xsi_ds.shm_segsz");
       }
       //Calculate flag
       int flag = map_options == default_map_options ? 0 : map_options;
@@ -617,7 +617,7 @@ inline mapped_region::mapped_region
       }
       else if(m_mode != read_write){
          error_info err(mode_error);
-         throw interprocess_exception(err);
+         throw interprocess_exception(err, "mapped_region::ctr: unknown mode");
       }
       //Attach memory
       //Some old shmat implementation take the address as a non-const void pointer
@@ -626,7 +626,7 @@ inline mapped_region::mapped_region
       void *base = ::shmat(map_hnd.handle, final_address, flag);
       if(base == (void*)-1){
          error_info err(system_error_code());
-         throw interprocess_exception(err);
+         throw interprocess_exception(err, "mapped_region::ctr: shmat failed");
       }
       //Update members
       m_base   = base;
@@ -645,7 +645,7 @@ inline mapped_region::mapped_region
       struct ::stat buf;
       if(0 != fstat(map_hnd.handle, &buf)){
          error_info err(system_error_code());
-         throw interprocess_exception(err);
+         throw interprocess_exception(err, "mapped_region::ctr:  fstat == 0");
       }
       //This can throw
       priv_size_from_mapping_size(buf.st_size, offset, page_offset, size);
@@ -688,7 +688,7 @@ inline mapped_region::mapped_region
       default:
          {
             error_info err(mode_error);
-            throw interprocess_exception(err);
+            throw interprocess_exception(err, "mapped_region::ctr: unknown mode");
          }
       break;
    }
@@ -704,7 +704,7 @@ inline mapped_region::mapped_region
    //Check if mapping was successful
    if(base == MAP_FAILED){
       error_info err = system_error_code();
-      throw interprocess_exception(err);
+      throw interprocess_exception(err, "mapped_region::ctr: mmap failed");
    }
 
    //Calculate new base for the user
@@ -716,7 +716,7 @@ inline mapped_region::mapped_region
    if(address && (base != address)){
       error_info err(busy_error);
       this->priv_close();
-      throw interprocess_exception(err);
+      throw interprocess_exception(err, "mapped_region::ctr: fixed mapping error");
    }
 }
 

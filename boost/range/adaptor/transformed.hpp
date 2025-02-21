@@ -103,12 +103,12 @@ namespace boost
 
     namespace adaptors
     {
-        namespace
-        {
+        //namespace
+        //{
             const range_detail::forwarder<range_detail::transform_holder>
                     transformed =
                       range_detail::forwarder<range_detail::transform_holder>();
-        }
+        //}
 
         template<class UnaryFunction, class SinglePassRange>
         inline transformed_range<UnaryFunction, SinglePassRange>

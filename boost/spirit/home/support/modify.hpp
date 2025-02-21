@@ -13,7 +13,11 @@
 #endif
 
 #include <boost/type_traits/is_base_of.hpp>
+#include <boost/core/enable_if.hpp>
 #include <boost/spirit/home/support/unused.hpp>
+#include <boost/mpl/if.hpp>
+#include <boost/type_traits/remove_const.hpp>
+#include <boost/type_traits/remove_reference.hpp>
 
 namespace boost { namespace spirit
 {

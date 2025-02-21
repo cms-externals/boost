@@ -13,6 +13,7 @@
 #ifndef BOOST_NO_IOSTREAM
 #include <ostream>
 #endif
+#include <boost/thread/thread_only.hpp>
 #include <boost/thread/detail/move.hpp>
 #include <boost/thread/mutex.hpp>
 #if defined BOOST_THREAD_USES_DATETIME
