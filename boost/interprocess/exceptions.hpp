@@ -43,7 +43,7 @@ class BOOST_SYMBOL_VISIBLE interprocess_exception : public std::exception
       BOOST_INTERPROCESS_CATCH(...) {} BOOST_INTERPROCESS_CATCH_END
    }
 
-  interprocess_exception(const error_info &err_info, const char *str /*= 0*/)
+  interprocess_exception(const error_info &err_info, const char *str = 0)
       :  m_err(err_info)
    {
       BOOST_INTERPROCESS_TRY{
