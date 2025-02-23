@@ -40,8 +40,9 @@ BOOST_ARCHIVE_VERSION();
 typedef boost::serialization::library_version_type library_version_type;
 
 class version_type {
-private:
+public:
     typedef uint_least32_t base_type;
+private:
     base_type t;
 public:
     // should be private - but MPI fails if it's not!!!
@@ -73,8 +74,9 @@ public:
 };
 
 class class_id_type {
-private:
+public:
     typedef int_least16_t base_type;
+private:
     base_type t;
 public:
     // should be private - but then can't use BOOST_STRONG_TYPE below
@@ -112,8 +114,9 @@ public:
 #define BOOST_SERIALIZATION_NULL_POINTER_TAG boost::archive::class_id_type(-1)
 
 class object_id_type {
-private:
+public:
     typedef uint_least32_t base_type;
+private:
     base_type t;
 public:
     object_id_type(): t(0) {}
@@ -152,6 +155,7 @@ public:
 #endif
 
 struct tracking_type {
+    typedef bool base_type;
     bool t;
     explicit tracking_type(const bool t_ = false)
         : t(t_)

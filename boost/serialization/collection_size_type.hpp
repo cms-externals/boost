@@ -18,8 +18,9 @@ namespace serialization {
 //BOOST_STRONG_TYPEDEF(std::size_t, collection_size_type)
 
 class collection_size_type {
-private:
+public:
     typedef std::size_t base_type;
+private:
     base_type t;
 public:
     collection_size_type(): t(0) {}

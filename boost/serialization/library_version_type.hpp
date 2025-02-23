@@ -34,8 +34,9 @@ namespace serialization {
  * binary archives won't be readable !!!
  */
 class library_version_type {
-private:
+public:
     typedef uint_least16_t base_type;
+private:
     base_type t;
 public:
     library_version_type(): t(0) {}
