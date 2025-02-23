@@ -23,8 +23,9 @@ namespace serialization {
 #endif
 
 class item_version_type {
-private:
+public:
     typedef unsigned int base_type;
+private:
     base_type t;
 public:
     // should be private - but MPI fails if it's not!!!
