@@ -200,7 +200,6 @@ failed ************ (boost::mpl::not_<Pred>::************
     );
 
 #ifdef BOOST_MPL_IGNORE_PARENTHESES_WARNING
-#undef BOOST_MPL_IGNORE_PARENTHESES_WARNING
 #pragma GCC diagnostic pop
 #endif
 
