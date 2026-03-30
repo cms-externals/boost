@@ -12,6 +12,7 @@
 
 #include <stdexcept>
 #include <string>
+#include <boost/config.hpp>
 
 #include <boost/config.hpp>
 

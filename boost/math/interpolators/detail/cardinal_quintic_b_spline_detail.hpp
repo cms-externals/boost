@@ -10,6 +10,7 @@
 #include <cstdint>
 #include <vector>
 #include <utility>
+#include <stdexcept>
 #include <boost/math/special_functions/cardinal_b_spline.hpp>
 
 namespace boost{ namespace math{ namespace interpolators{ namespace detail{

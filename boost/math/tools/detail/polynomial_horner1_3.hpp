@@ -9,6 +9,8 @@
 #ifndef BOOST_MATH_TOOLS_POLY_EVAL_3_HPP
 #define BOOST_MATH_TOOLS_POLY_EVAL_3_HPP
 
+#include <boost/mpl/identity.hpp>
+
 namespace boost{ namespace math{ namespace tools{ namespace detail{
 
 template <class T, class V>

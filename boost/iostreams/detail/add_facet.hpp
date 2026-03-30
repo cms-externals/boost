@@ -17,6 +17,8 @@
 #include <boost/config.hpp>  // BOOST_DINKUMWARE_STDLIB.
 #include <boost/detail/workaround.hpp>
 
+#include <locale>
+
 //------------------Definition of add_facet-----------------------------------//
 
 // Does STLport uses old Dinkumware locale?

@@ -184,8 +184,7 @@ template< typename P > struct assert_arg_pred_not
     typedef typename assert_arg_pred_impl<p>::type type;
 };
 
-#if BOOST_WORKAROUND(BOOST_GCC_VERSION, >= 80000)
-#define BOOST_MPL_IGNORE_PARENTHESES_WARNING
+#ifdef BOOST_MPL_IGNORE_PARENTHESES_WARNING
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wparentheses"
 #endif
@@ -201,7 +200,6 @@ failed ************ (boost::mpl::not_<Pred>::************
     );
 
 #ifdef BOOST_MPL_IGNORE_PARENTHESES_WARNING
-#undef BOOST_MPL_IGNORE_PARENTHESES_WARNING
 #pragma GCC diagnostic pop
 #endif
 

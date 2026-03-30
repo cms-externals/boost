@@ -20,6 +20,8 @@
 #include <boost/math/special_functions/math_fwd.hpp>
 #include <boost/math/special_functions/detail/fp_traits.hpp>
 
+#include <cmath>
+
 namespace boost{ namespace math{ 
 
 namespace detail {

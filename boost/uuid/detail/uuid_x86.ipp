@@ -34,6 +34,11 @@ BOOST_PRAGMA_MESSAGE( "Using uuid_x86.ipp, SSE2" )
 #endif
 #endif // #if defined(BOOST_UUID_REPORT_IMPLEMENTATION)
 
+#include <memory>
+#include <boost/config.hpp>
+#include <boost/cstdint.hpp>
+#include <boost/uuid/uuid.hpp>
+
 // MSVC does not always have immintrin.h (at least, not up to MSVC 10), so include the appropriate header for each instruction set
 #if defined(BOOST_UUID_USE_AVX10_1)
 #include <immintrin.h>

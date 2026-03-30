@@ -7,6 +7,8 @@
 
 #ifndef BOOST_MATH_CALCULATE_CONSTANTS_CONSTANTS_INCLUDED
 #define BOOST_MATH_CALCULATE_CONSTANTS_CONSTANTS_INCLUDED
+
+#include <boost/math/constants/constants.hpp>
 #include <type_traits>
 
 namespace boost{ namespace math{ namespace constants{ namespace detail{

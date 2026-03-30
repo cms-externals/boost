@@ -158,12 +158,12 @@ inline posix_condition::posix_condition()
    res = pthread_condattr_setpshared(&cond_attr, PTHREAD_PROCESS_SHARED);
    if(res != 0){
       pthread_condattr_destroy(&cond_attr);
-      throw interprocess_exception(res);
+      throw interprocess_exception(res,"posix_condition::ctr pthread_condattr_setpshared failed");
    }
    res = pthread_cond_init(&m_condition, &cond_attr);
    pthread_condattr_destroy(&cond_attr);
    if(res != 0){
-      throw interprocess_exception(res);
+     throw interprocess_exception(res, "posix_condition::ctr pthread_cond_init failed");
    }
 }
 
